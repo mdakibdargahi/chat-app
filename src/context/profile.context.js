@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  // useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, database } from '../misc/firebase';
 
 const profileContext = createContext();
@@ -45,10 +39,6 @@ export const ProfileProvider = ({ children }) => {
     };
   }, []);
 
-  // const isLoadingWrapper = useMemo(
-  //   () => ({ isLoadingWrapper: 'isLoading' }),
-  //   []
-  // );
   return (
     <profileContext.Provider value={{ isLoading, profile }}>
       {children}
