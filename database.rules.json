@@ -15,6 +15,7 @@
       }
     },
     "messages": {
+      ".indexOn": ["roomId", "author/uid"],
       ".read": "auth!==null",
       ".write": "auth!==null",
       "$message_id": {
@@ -24,7 +25,7 @@
     },
     "status": {
       "$user_id": {
-        ".read": "$user_id===auth.uid",
+        ".read": "auth !==null",
         ".write": "$user_id===auth.uid"
       }
     },

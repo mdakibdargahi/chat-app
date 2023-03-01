@@ -9,19 +9,33 @@ const DashBoardToggle = () => {
   const { isOpen, close, open } = useModalState();
   const isMobile = useMediaQuery('(max-width: 992px)');
 
-  const onSignOut = useCallback(() => {
-    database
-      .ref(`/status/${auth.currentUser.uid}`)
-      .set(isOfflineForDatabase)
-      .then(() => {
-        auth.signOut();
-        Alert.info('Signed Out', 4000);
-        close();
-      })
-      .catch(error => {
-        Alert.error(error.message, 4000);
-      });
+  const onSignOut = useCallback(async () => {
+    try {
+      await database
+        .ref(`/status/${auth.currentUser.uid}`)
+        .set(isOfflineForDatabase);
+      await auth.signOut();
+      Alert.info('Signed out', 4000);
+
+      close();
+    } catch (err) {
+      Alert.error(err.message, 4000);
+    }
   }, [close]);
+
+  // const onSignOut = useCallback(async() => {
+  //   database
+  //     .ref(`/status/${auth.currentUser.uid}`)
+  //     .set(isOfflineForDatabase)
+  //     .then(() => {
+  //       auth.signOut();
+  //       Alert.info('Signed Out', 4000);
+  //       close();
+  //     })
+  //     .catch(error => {
+  //       Alert.error(error.message, 4000);
+  //     });
+  // }, [close]);
 
   return (
     <>
