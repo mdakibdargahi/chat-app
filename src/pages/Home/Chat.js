@@ -27,6 +27,7 @@ const Chat = () => {
 
   const { name, description } = currentRoom;
   const admins = tranceformToArr(currentRoom.admins);
+
   const isAdmin = admins.includes(auth.currentUser.uid);
 
   const currentRoomData = { name, description, admins, isAdmin };
